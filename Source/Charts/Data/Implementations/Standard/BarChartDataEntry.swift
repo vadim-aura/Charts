@@ -37,7 +37,7 @@ public enum PositionBar {
 open class BarChartDataEntry: ChartDataEntry
 {
     /// Position bar relative to xAxis
-    var positionBar: PositionBar = .center
+    open var positionBar: PositionBar = .center
     /// the values the stacked barchart holds
     private var _yVals: [Double]?
     
