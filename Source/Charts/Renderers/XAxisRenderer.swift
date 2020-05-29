@@ -360,6 +360,7 @@ open class XAxisRenderer: AxisRendererBase
             var clippingRect = viewPortHandler.contentRect
             clippingRect.origin.x -= l.lineWidth / 2.0
             clippingRect.size.width += l.lineWidth
+            clippingRect.size.height += viewPortHandler.contentBottom - CGFloat(l.offsetLineBottom)
             context.clip(to: clippingRect)
             
             position.x = CGFloat(l.limit)
@@ -375,8 +376,8 @@ open class XAxisRenderer: AxisRendererBase
     {
         
         context.beginPath()
-        context.move(to: CGPoint(x: position.x, y: viewPortHandler.contentTop))
-        context.addLine(to: CGPoint(x: position.x, y: viewPortHandler.contentBottom))
+        context.move(to: CGPoint(x: position.x, y: viewPortHandler.contentTop + CGFloat(limitLine.offsetLineTop)))
+        context.addLine(to: CGPoint(x: position.x, y: viewPortHandler.contentBottom - CGFloat(limitLine.offsetLineBottom)))
         
         context.setStrokeColor(limitLine.lineColor.cgColor)
         context.setLineWidth(limitLine.lineWidth)
@@ -401,10 +402,12 @@ open class XAxisRenderer: AxisRendererBase
         let labelLineHeight = limitLine.valueFont.lineHeight
 
         let xOffset: CGFloat = limitLine.lineWidth + limitLine.xOffset
-        let attributes: [NSAttributedString.Key : Any] = [
+        let defaultAttributes: [NSAttributedString.Key : Any] = [
             .font : limitLine.valueFont,
-            .foregroundColor : limitLine.valueTextColor
+            .foregroundColor : limitLine.valueTextColor,
+            .backgroundColor : limitLine.labelBackgroundColor
         ]
+        let attributes: [NSAttributedString.Key : Any] = limitLine.attributedKeys == nil ? defaultAttributes : limitLine.attributedKeys ?? [:]
 
         let (point, align): (CGPoint, NSTextAlignment)
         switch limitLine.labelPosition {

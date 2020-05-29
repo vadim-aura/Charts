@@ -125,8 +125,9 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
 
             if !containsStacks || vals == nil
             {
-                let left = CGFloat(x - barWidthHalf)
-                let right = CGFloat(x + barWidthHalf)
+                let pointsForPaint = e.positionBar.pointLeftRightBar(x, barWidthHalf)
+                let left = CGFloat(pointsForPaint.left)
+                let right = CGFloat(pointsForPaint.right)
                 var top = isInverted
                     ? (y <= 0.0 ? CGFloat(y) : 0)
                     : (y >= 0.0 ? CGFloat(y) : 0)

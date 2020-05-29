@@ -28,6 +28,10 @@ open class ChartLimitLine: ComponentBase
     
     /// limit / maximum (the y-value or xIndex)
     @objc open var limit = Double(0.0)
+    var offsetLineTop: Double = 0.0
+    var offsetLineBottom: Double = 0.0
+    var labelBackgroundColor: NSUIColor = .clear
+    var attributedKeys: [NSAttributedString.Key: Any]? = nil
     
     private var _lineWidth = CGFloat(2.0)
     @objc open var lineColor = NSUIColor(red: 237.0/255.0, green: 91.0/255.0, blue: 91.0/255.0, alpha: 1.0)

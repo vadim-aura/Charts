@@ -356,7 +356,11 @@ open class YAxisRenderer: AxisRendererBase
                             x: viewPortHandler.contentRight - xOffset,
                             y: position.y - yOffset),
                         align: .right,
-                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
+                        attributes: [
+                            NSAttributedString.Key.font: l.valueFont,
+                            NSAttributedString.Key.foregroundColor: l.valueTextColor,
+                            NSAttributedString.Key.backgroundColor: l.labelBackgroundColor
+                    ])
                 }
                 else if l.labelPosition == .bottomRight
                 {
@@ -366,7 +370,11 @@ open class YAxisRenderer: AxisRendererBase
                             x: viewPortHandler.contentRight - xOffset,
                             y: position.y + yOffset - labelLineHeight),
                         align: .right,
-                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
+                        attributes: [
+                            NSAttributedString.Key.font: l.valueFont,
+                            NSAttributedString.Key.foregroundColor: l.valueTextColor,
+                            NSAttributedString.Key.backgroundColor: l.labelBackgroundColor
+                    ])
                 }
                 else if l.labelPosition == .topLeft
                 {
@@ -376,7 +384,11 @@ open class YAxisRenderer: AxisRendererBase
                             x: viewPortHandler.contentLeft + xOffset,
                             y: position.y - yOffset),
                         align: .left,
-                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
+                        attributes: [
+                            NSAttributedString.Key.font: l.valueFont,
+                            NSAttributedString.Key.foregroundColor: l.valueTextColor,
+                            NSAttributedString.Key.backgroundColor: l.labelBackgroundColor
+                    ])
                 }
                 else
                 {
@@ -386,7 +398,11 @@ open class YAxisRenderer: AxisRendererBase
                             x: viewPortHandler.contentLeft + xOffset,
                             y: position.y + yOffset - labelLineHeight),
                         align: .left,
-                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
+                        attributes: [
+                            NSAttributedString.Key.font: l.valueFont,
+                            NSAttributedString.Key.foregroundColor: l.valueTextColor,
+                            NSAttributedString.Key.backgroundColor: l.labelBackgroundColor
+                    ])
                 }
             }
         }

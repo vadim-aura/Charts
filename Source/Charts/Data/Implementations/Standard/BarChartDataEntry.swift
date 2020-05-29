@@ -11,8 +11,33 @@
 
 import Foundation
 
+public enum PositionBar {
+    case center
+    case left
+    case right
+    
+    func pointLeftRightBar(_ x: Double, _ barWidthHalf: Double) -> (left: Double, right: Double) {
+        var left = x
+        var right = x
+        switch self {
+        case .center:
+            left = x - barWidthHalf
+            right = x + barWidthHalf
+            return (left, right)
+        case .left:
+            left = x - barWidthHalf * 2
+            return (left, right)
+        case .right:
+            right = x + barWidthHalf * 2
+            return (left, right)
+        }
+    }
+}
+
 open class BarChartDataEntry: ChartDataEntry
 {
+    /// Position bar relative to xAxis
+    var positionBar: PositionBar = .center
     /// the values the stacked barchart holds
     private var _yVals: [Double]?
     
@@ -34,6 +59,13 @@ open class BarChartDataEntry: ChartDataEntry
     public override init(x: Double, y: Double)
     {
         super.init(x: x, y: y)
+    }
+    
+    /// Constructor for normal bars position bar.
+    public convenience init(x: Double, y: Double, positionBar: PositionBar = .center)
+    {
+        self.init(x: x, y: y)
+        self.positionBar = positionBar
     }
     
     /// Constructor for normal bars (not stacked).
